@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+
+# Project specific
+backend/cache_db/
+backend/outputs/*.md
+frontend/node_modules/
+frontend/.next/
+frontend/dist/
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
