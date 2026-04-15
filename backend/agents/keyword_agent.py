@@ -1,12 +1,12 @@
 import os
-from groq import Groq
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class KeywordAgent:
     def __init__(self):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def generate(self, trends_data: dict, topic: str):
         prompt = f"""
@@ -25,8 +25,8 @@ class KeywordAgent:
         """
         
         chat_completion = self.client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}],
-            model="llama-3.3-70b-versatile",
+            messages=[{"role": "system", "content": "You are a keyword researcher."}, {"role": "user", "content": prompt}],
+            model="gpt-4o",
             response_format={"type": "json_object"}
         )
         

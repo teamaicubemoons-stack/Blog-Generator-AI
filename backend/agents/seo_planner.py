@@ -1,12 +1,12 @@
 import os
-from groq import Groq
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class SEOPlannerAgent:
     def __init__(self):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def plan(self, keywords: dict, company_context: dict, topic: str):
         prompt = f"""
@@ -43,8 +43,8 @@ class SEOPlannerAgent:
         """
         
         chat_completion = self.client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}],
-            model="llama-3.3-70b-versatile",
+            messages=[{"role": "system", "content": "You are a professional SEO strategist."}, {"role": "user", "content": prompt}],
+            model="gpt-4o",
             response_format={"type": "json_object"}
         )
         return chat_completion.choices[0].message.content

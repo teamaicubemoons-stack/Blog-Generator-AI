@@ -1,13 +1,13 @@
 import os
 import json
-from groq import Groq
+from openai import OpenAI
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class BlogGeneratorAgent:
     def __init__(self):
-        self.client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def generate_blog(self, structure: str, keywords: str, context: str):
         prompt = f"""
@@ -34,7 +34,7 @@ class BlogGeneratorAgent:
         """
         
         chat_completion = self.client.chat.completions.create(
-            messages=[{"role": "user", "content": prompt}],
-            model="llama-3.3-70b-versatile"
+            messages=[{"role": "system", "content": "You are a professional content writer."}, {"role": "user", "content": prompt}],
+            model="gpt-4o"
         )
         return chat_completion.choices[0].message.content

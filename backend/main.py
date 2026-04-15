@@ -126,7 +126,7 @@ if __name__ == "__main__":
         threading.Thread(target=start_frontend, daemon=True).start()
         
         # Run uvicorn
-        uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+        uvicorn.run(app, host="0.0.0.0", port=8001, log_level="info")
     except KeyboardInterrupt:
         print("\n>>> Shutting down gracefully...")
     finally:

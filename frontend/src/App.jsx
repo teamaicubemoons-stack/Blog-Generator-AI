@@ -14,7 +14,7 @@ import {
   Globe 
 } from 'lucide-react';
 
-const API_URL = "http://localhost:8000";
+const API_URL = "http://localhost:8001";
 
 const Nav = () => (
     <nav className="nav-container animate-fade-in">
