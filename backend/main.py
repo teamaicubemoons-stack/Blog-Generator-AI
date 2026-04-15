@@ -24,6 +24,7 @@ app.add_middleware(
 )
 
 # Initialize Cache
+os.makedirs('./cache_db', exist_ok=True)
 cache = dc.Cache('./cache_db')
 
 # Initialize Agents
