@@ -77,6 +77,7 @@ async def start_pipeline(request: BlogRequest):
         }
         
         # Save to Output Folder
+        os.makedirs("outputs", exist_ok=True)
         filename = f"outputs/{topic.lower().replace(' ', '_')[:20]}.md"
         with open(filename, "w", encoding="utf-8") as f:
             f.write(f"# {final_output['title']}\n\n")
